@@ -16,13 +16,9 @@ let history = [];
 openBracket.addEventListener("click", () => {
   openBracketCounter++;
   bracketStack.push("(");
-
 });
 
-closeBracket.addEventListener("click", () => {
-
-
-});
+closeBracket.addEventListener("click", () => {});
 
 buttons.forEach((btn) => {
   btn.addEventListener("click", () => {
@@ -65,7 +61,6 @@ buttons.forEach((btn) => {
       }
 
       if (areBracketsBalanced()) {
-
         let expression = input.value;
         expression = implicitMultiply(expression);
 
@@ -86,7 +81,6 @@ buttons.forEach((btn) => {
           errorField.textContent = "Error";
         }
       } else {
-
         errorField.textContent = `Balance all brackets. '(' = ${openBracketCounter} and '(' = ${closeBracketCounter}`;
       }
     } else if (id === "btn-history") {
@@ -435,6 +429,7 @@ function implicitMultiply(expression) {
   expression = expression.replace(/([abcπe])\(/g, "$1*(");
   expression = expression.replace(/\)([abcπe])/g, ")*$1");
   expression = expression.replace(/(\d)([abcπe])/g, "$1*$2");
+  expression = expression.replace(/([abcπe])(\d)/g, "$1*$2");
   expression = expression.replace(/([abcπe])([abcπe]+)/g, (match, p1, p2) => {
     return [p1, ...p2.split("")].join("*");
   });
