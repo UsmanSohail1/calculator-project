@@ -20,37 +20,29 @@
   <body
     class="bg-light d-flex justify-content-center align-items-center min-vh-90"
   >
-    <div class="border rounded-4 shadow p-4 bg-white" style="width: 220px">
+    <div class="border rounded-4 shadow p-4 bg-white" style="width: 260px">
       <h6 class="text-center mb-3">Variables</h6>
-
-      <div class="d-flex justify-content-between mb-2">
-        <button class="btn btn-outline-primary flex-fill mx-1" id="var-a">
-          a
-        </button>
-        <button class="btn btn-outline-primary flex-fill mx-1" id="var-b">
-          b
-        </button>
-        <button class="btn btn-outline-primary flex-fill mx-1" id="var-c">
-          c
-        </button>
-      </div>
 
       <input
         class="form-control mb-2"
+        type="text"
+        id="var-name"
+        placeholder="Variable name (max 5)"
+        maxlength="5"
+      />
+      <input
+        class="form-control mb-2"
         type="number"
-        id="var-input"
+        id="var-value"
         placeholder="Enter value"
       />
 
-      <div class="d-flex gap-2 mb-2">
-        <button class="btn btn-warning flex-fill" id="btn-assign">
-          Assign
-        </button>
-        <button class="btn btn-success flex-fill" id="btn-save">Save</button>
-      </div>
+      <button class="btn btn-primary mb-2 w-100" id="btn-assign">Assign</button>
+
+      <div id="var-list" class="mb-2"></div>
 
       <div id="var-status" class="small text-muted text-end">
-        No variable selected
+        No variable assigned
       </div>
     </div>
 
@@ -60,13 +52,14 @@
           type="text"
           class="form-control text-end fs-4"
           id="output"
-          placeholder="output"
+          placeholder=""
           readonly
         />
       </div>
 
       <div class="mb-1">
         <input
+          style="user-select: none"
           type="text"
           class="form-control text-end fs-4 select-none"
           id="input"
@@ -75,9 +68,11 @@
         />
       </div>
 
-      <div id="error-field" class="text-danger small text-end mb-3">
-        No Errors
-      </div>
+      <div
+        id="error-field"
+        class="text-danger small text-end mb-3"
+        style="min-height: 1.5em"
+      ></div>
 
       <div class="d-grid gap-2">
         <div class="d-flex gap-1">
@@ -143,12 +138,27 @@
         </div>
       </div>
     </div>
+    <div class="card shadow-sm border-0 m-2" style="width: 300px">
+      <div
+        class="card-header bg-primary text-white py-2 d-flex justify-content-between align-items-center"
+      >
+        <h5 class="mb-0">History</h5>
+        <button
+          id="clear-history"
+          class="btn btn-sm btn-light text-primary fw-semibold"
+        >
+          Clear
+        </button>
+      </div>
 
-    <div
-      id="history"
-      class="border p-2 mt-3 bg-light rounded small overflow-auto ms-3"
-      style="height: 250px; width: 280px"
-    ></div>
+      <div
+        id="history"
+        class="card-body bg-light rounded-bottom small overflow-auto"
+        style="height: 250px"
+      >
+        <p class="text-muted text-center mb-0">No history yet</p>
+      </div>
+    </div>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
